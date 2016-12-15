@@ -15,13 +15,44 @@
         android:layout_gravity="top"
         android:background="@color/colorPrimary"/>
 
-    <com.yat3s.demo.caper.AnimateLayout
+    <LinearLayout
         android:id="@+id/content_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorPrimary">
+        android:background="@color/colorPrimary"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingTop="?attr/actionBarSize">
 
-    </com.yat3s.demo.caper.AnimateLayout>
+        <com.yat3s.demo.caper.widget.ContentTextView
+            style="@style/ProfileItemText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            android:text="GITHUB"/>
+
+        <com.yat3s.demo.caper.widget.ContentTextView
+            style="@style/ProfileItemText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="EMAIL"/>
+
+        <com.yat3s.demo.caper.widget.ContentTextView
+            style="@style/ProfileItemText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="GITHUB"/>
+
+        <com.yat3s.demo.caper.widget.ContentTextView
+            style="@style/ProfileItemText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="EMAIL"/>
+
+    </LinearLayout>
 
     <FrameLayout
         android:id="@+id/toolbar"
@@ -29,6 +60,7 @@
         android:layout_height="?attr/actionBarSize">
 
         <TextView
+            android:id="@+id/title_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

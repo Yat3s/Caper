@@ -1,4 +1,4 @@
-package com.yat3s.demo.caper;
+package com.yat3s.demo.caper.widget;
 
 import android.animation.TimeInterpolator;
 

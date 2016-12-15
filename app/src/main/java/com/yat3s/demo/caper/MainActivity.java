@@ -1,5 +1,6 @@
 package com.yat3s.demo.caper;
 
+import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.os.Build;
 import android.os.Bundle;
@@ -8,6 +9,10 @@ import android.view.View;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.yat3s.demo.caper.widget.GuillotineInterpolator;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,13 +25,15 @@ public class MainActivity extends AppCompatActivity {
     private static final long DEFAULT_DURATION = 500;
 
     @BindView(R.id.content_layout)
-    AnimateLayout contentLayout;
+    LinearLayout contentLayout;
     @BindView(R.id.menu_btn)
     ImageView menuBtn;
     @BindView(R.id.toolbar)
     FrameLayout toolbar;
+    @BindView(R.id.title_tv)
+    TextView titleTv;
 
-    private boolean menuIsOpen = true;
+    private boolean menuIsOpen = false;
     private ObjectAnimator mOpenMenuAnimator, mCloseMenuAnimator;
 
     @Override
@@ -53,24 +60,54 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (menuIsOpen) {
-                    mCloseMenuAnimator.start();
+                    closeMenu();
                 } else {
-                    mOpenMenuAnimator.start();
+                    openMenu();
                 }
                 menuIsOpen = !menuIsOpen;
             }
         });
+        contentLayout.setRotation(MENU_CLOSED_ANGLE);
+    }
+
+    private void openMenu() {
+        mOpenMenuAnimator.start();
+        titleTv.setVisibility(View.GONE);
+    }
+
+    private void closeMenu() {
+        mCloseMenuAnimator.start();
     }
 
     private void configureAnimation() {
-        mOpenMenuAnimator = ObjectAnimator.ofFloat(contentLayout, PROPERTY_ROTATION, MENU_OPENED_ANGLE).setDuration
-                (DEFAULT_DURATION);
+        mOpenMenuAnimator = ObjectAnimator.ofFloat(contentLayout, PROPERTY_ROTATION, MENU_CLOSED_ANGLE, MENU_OPENED_ANGLE)
+                .setDuration(DEFAULT_DURATION);
         mOpenMenuAnimator.setInterpolator(new GuillotineInterpolator());
 
-        mCloseMenuAnimator = ObjectAnimator.ofFloat(contentLayout, PROPERTY_ROTATION, MENU_CLOSED_ANGLE).setDuration
-                (DEFAULT_DURATION);
+
+        mCloseMenuAnimator = ObjectAnimator.ofFloat(contentLayout, PROPERTY_ROTATION, MENU_OPENED_ANGLE, MENU_CLOSED_ANGLE)
+                .setDuration(DEFAULT_DURATION);
         mCloseMenuAnimator.setInterpolator(new GuillotineInterpolator());
+        mCloseMenuAnimator.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
 
+            }
 
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                titleTv.setVisibility(View.VISIBLE);
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
     }
 }

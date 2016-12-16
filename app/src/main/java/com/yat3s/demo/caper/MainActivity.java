@@ -84,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
                 .setDuration(DEFAULT_DURATION);
         mOpenMenuAnimator.setInterpolator(new GuillotineInterpolator());
 
-
         mCloseMenuAnimator = ObjectAnimator.ofFloat(contentLayout, PROPERTY_ROTATION, MENU_OPENED_ANGLE, MENU_CLOSED_ANGLE)
                 .setDuration(DEFAULT_DURATION);
         mCloseMenuAnimator.setInterpolator(new GuillotineInterpolator());

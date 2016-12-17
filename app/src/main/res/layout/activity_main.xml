@@ -15,65 +15,9 @@
         android:layout_gravity="top"
         android:background="@color/colorPrimary"/>
 
-    <LinearLayout
-        android:id="@+id/content_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorPrimary"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:paddingTop="?attr/actionBarSize">
+    <include layout="@layout/layout_profile"/>
 
-        <com.yat3s.demo.caper.widget.ContentTextView
-            style="@style/ProfileItemText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:text="GITHUB"/>
+    <include layout="@layout/layout_toolbar"/>
 
-        <com.yat3s.demo.caper.widget.ContentTextView
-            style="@style/ProfileItemText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="EMAIL"/>
 
-        <com.yat3s.demo.caper.widget.ContentTextView
-            style="@style/ProfileItemText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="GITHUB"/>
-
-        <com.yat3s.demo.caper.widget.ContentTextView
-            style="@style/ProfileItemText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="EMAIL"/>
-
-    </LinearLayout>
-
-    <FrameLayout
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize">
-
-        <TextView
-            android:id="@+id/title_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="TITLE"
-            android:textColor="@color/md_white_1000"
-            android:textStyle="bold"/>
-
-        <ImageView
-            android:id="@+id/menu_btn"
-            style="@style/Widget.AppCompat.Toolbar.Button.Navigation"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:src="@mipmap/ic_menu_90"/>
-
-    </FrameLayout>
 </FrameLayout>

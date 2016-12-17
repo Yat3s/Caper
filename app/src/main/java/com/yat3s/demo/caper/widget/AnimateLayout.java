@@ -1,7 +1,6 @@
 package com.yat3s.demo.caper.widget;
 
 import android.content.Context;
-import android.support.v4.content.PermissionChecker;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
 

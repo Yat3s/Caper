@@ -15,9 +15,27 @@
         android:layout_gravity="top"
         android:background="@color/colorPrimary"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="?attr/actionBarSize">
+
+        <com.yat3s.demo.caper.widget.AnimateLayout
+            android:id="@+id/performance_layout"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:background="@color/md_amber_100"/>
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/performance_viewpager"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"/>
+
+    </LinearLayout>
+
     <include layout="@layout/layout_profile"/>
 
     <include layout="@layout/layout_toolbar"/>
-
 
 </FrameLayout>

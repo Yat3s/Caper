@@ -3,6 +3,7 @@ package com.yat3s.demo.caper;
 import android.animation.Animator;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -59,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
         performanceLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, TabAnimationActivity.class));
                 ObjectAnimator.ofInt(new ViewWrapper(performanceLayout), "width", 1000).setDuration(800).start();
                 ObjectAnimator.ofInt(new ViewWrapper(performanceLayout), "height", 800).setDuration(800).start();
             }

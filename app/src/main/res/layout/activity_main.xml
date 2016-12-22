@@ -7,7 +7,6 @@
     android:background="@color/md_blue_grey_600"
     android:gravity="center"
     android:orientation="vertical"
-    android:fitsSystemWindows="true"
     tools:context="com.yat3s.demo.caper.MainActivity">
 
     <View

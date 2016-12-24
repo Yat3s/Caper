@@ -6,8 +6,8 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.LinearLayout;
 
-import com.yat3s.demo.caper.util.SystemBarTintManager;
 import com.yat3s.library.adapter.BaseAdapter;
 import com.yat3s.library.adapter.BaseViewHolder;
 
@@ -26,19 +26,47 @@ public class TabAnimationActivity extends AppCompatActivity {
     private static final int MOCK_ITEM_COUNT = 100;
     @BindView(R.id.content_rv)
     RecyclerView contentRv;
+    @BindView(R.id.tab_layout)
+    LinearLayout tabLayout;
+
+    private boolean tabIsShow;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab_animation);
-        SystemBarTintManager systemBarTintManager = new SystemBarTintManager(this);
-        systemBarTintManager.setStatusBarTintEnabled(true);
-        systemBarTintManager.setNavigationBarTintEnabled(true);
-
         ButterKnife.bind(this);
 
         contentRv.setLayoutManager(new LinearLayoutManager(this));
         contentRv.setAdapter(new CardAdapter(this, generateMockData()));
+        contentRv.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    if (!tabIsShow) {
+                        tabLayout.animate().translationY(0).setDuration(500).start();
+                        tabIsShow = !tabIsShow;
+                    }
+                }
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                if (dy > 0) {
+                    if (tabIsShow) {
+                        tabLayout.animate().translationY(300).setDuration(500).start();
+                        tabIsShow = !tabIsShow;
+                    }
+                } else {
+                    if (!tabIsShow) {
+                        tabLayout.animate().translationY(0).setDuration(500).start();
+                        tabIsShow = !tabIsShow;
+                    }
+                }
+            }
+        });
     }
 
     private List<CardItem> generateMockData() {

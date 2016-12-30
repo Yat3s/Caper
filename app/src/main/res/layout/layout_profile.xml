@@ -12,6 +12,10 @@
     android:visibility="gone"
     tools:showIn="@layout/activity_main">
 
+    <ImageView
+        android:layout_width="@dimen/profileAvatarSize"
+        android:layout_height="@dimen/profileAvatarSize"/>
+
     <com.yat3s.demo.caper.widget.ContentTextView
         style="@style/ProfileItemText"
         android:layout_width="wrap_content"

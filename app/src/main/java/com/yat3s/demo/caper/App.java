@@ -9,7 +9,7 @@ import android.graphics.Typeface;
  * GitHub: https://github.com/yat3s
  */
 public class App extends Application {
-    private static final String PATH_CONTENT_TEXT_TYPEFACE = "fonts/kilsonburg.ttf";
+    private static final String PATH_CONTENT_TEXT_TYPEFACE = "fonts/DAYPBL__.ttf";
     public static Typeface sContentTextTypeface;
 
     @Override

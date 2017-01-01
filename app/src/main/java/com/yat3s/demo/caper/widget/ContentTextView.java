@@ -27,8 +27,8 @@ public class ContentTextView extends TextView {
     }
 
     private void init() {
-//        if (!isInEditMode()) {
-//            setTypeface(App.sContentTextTypeface);
-//        }
+        if (!isInEditMode()) {
+            setTypeface(App.sContentTextTypeface);
+        }
     }
 }

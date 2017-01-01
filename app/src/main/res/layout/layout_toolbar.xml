@@ -7,13 +7,14 @@
     android:layout_height="?attr/actionBarSize"
     tools:showIn="@layout/activity_main">
 
-    <TextView
+    <com.yat3s.demo.caper.widget.ContentTextView
         android:id="@+id/title_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="TITLE"
         android:textColor="@color/md_white_1000"
+        android:textSize="@dimen/text_size_medium"
         android:textStyle="bold"/>
 
     <ImageView

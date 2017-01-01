@@ -19,6 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.yat3s.demo.caper.widget.AnimateLayout;
+import com.yat3s.demo.caper.widget.ContentTextView;
 import com.yat3s.demo.caper.widget.GuillotineInterpolator;
 import com.yat3s.demo.caper.widget.ViewWrapper;
 
@@ -39,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.toolbar)
     FrameLayout toolbar;
     @BindView(R.id.title_tv)
-    TextView titleTv;
+    ContentTextView titleTv;
     @BindView(R.id.performance_layout)
     AnimateLayout performanceLayout;
     @BindView(R.id.performance_viewpager)
@@ -68,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void configureViewpager() {
-        final String[] itemTitles = new String[]{"1", "2222", "3333"};
+        final String[] itemTitles = new String[]{"Pager1", "Pager2", "Pager3"};
 
         performanceViewpager.setAdapter(new PagerAdapter() {
             @Override
@@ -148,7 +149,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animator animation) {
-                titleTv.setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -167,9 +167,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (menuIsOpen) {
                     mCloseMenuAnimator.start();
+                    titleTv.animate().alpha(1).start();
                 } else {
                     mOpenMenuAnimator.start();
-                    titleTv.setVisibility(View.GONE);
+                    titleTv.animate().alpha(0).start();
                 }
                 menuIsOpen = !menuIsOpen;
             }

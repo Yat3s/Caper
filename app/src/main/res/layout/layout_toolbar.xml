@@ -77,7 +77,7 @@
         </LinearLayout>
     </LinearLayout>
 
-    <com.yat3s.demo.caper.widget.JJSearchView
+    <com.yat3s.demo.caper.widget.SearchView
         android:id="@+id/search_view"
         style="@style/Widget.AppCompat.Toolbar.Button.Navigation"
         android:layout_width="60dp"

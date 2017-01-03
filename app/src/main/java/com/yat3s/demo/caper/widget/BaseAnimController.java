@@ -14,7 +14,7 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.ref.WeakReference;
 
-public abstract class JJBaseController {
+public abstract class BaseAnimController {
     public static final int STATE_ANIM_NONE = 0;
     public static final int STATE_ANIM_START = 1;
     public static final int STATE_ANIM_STOP = 2;

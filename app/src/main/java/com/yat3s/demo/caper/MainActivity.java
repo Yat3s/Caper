@@ -20,8 +20,8 @@ import android.widget.LinearLayout;
 import com.yat3s.demo.caper.widget.AnimateLayout;
 import com.yat3s.demo.caper.widget.ContentTextView;
 import com.yat3s.demo.caper.widget.GuillotineInterpolator;
-import com.yat3s.demo.caper.widget.JJChangeArrowController;
-import com.yat3s.demo.caper.widget.JJSearchView;
+import com.yat3s.demo.caper.widget.ChangeArrowAnimController;
+import com.yat3s.demo.caper.widget.SearchView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.menu_line_two)
     View menuLineTwo;
     @BindView(R.id.search_view)
-    JJSearchView searchView;
+    SearchView searchView;
     @BindView(R.id.search_mask)
     View searchMask;
     @BindView(R.id.search_layout)
@@ -255,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private void configureToolbar() {
-        searchView.setController(new JJChangeArrowController());
+        searchView.setController(new ChangeArrowAnimController());
         searchView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

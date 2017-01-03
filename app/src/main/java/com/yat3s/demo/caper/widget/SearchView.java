@@ -7,20 +7,20 @@ import android.graphics.Path;
 import android.util.AttributeSet;
 import android.view.View;
 
-public class JJSearchView extends View {
+public class SearchView extends View {
     private Paint mPaint;
     private Path mPath;
-    private JJBaseController mController = new JJChangeArrowController();
+    private BaseAnimController mController = new ChangeArrowAnimController();
 
-    public JJSearchView(Context context) {
+    public SearchView(Context context) {
         this(context, null);
     }
 
-    public JJSearchView(Context context, AttributeSet attrs) {
+    public SearchView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public JJSearchView(Context context, AttributeSet attrs, int defStyleAttr) {
+    public SearchView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init();
     }
@@ -32,7 +32,7 @@ public class JJSearchView extends View {
         mPath = new Path();
     }
 
-    public void setController(JJBaseController controller) {
+    public void setController(BaseAnimController controller) {
         this.mController = controller;
         mController.setSearchView(this);
         invalidate();

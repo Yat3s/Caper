@@ -6,12 +6,12 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 
 
-public class JJChangeArrowController extends JJBaseController {
+public class ChangeArrowAnimController extends BaseAnimController {
     private float cx, cy, cr, scr, scx, scy;
     private RectF mRectF, mOutRectF;
     private float sign = 0.707f;
 
-    public JJChangeArrowController() {
+    public ChangeArrowAnimController() {
         mRectF = new RectF();
         mOutRectF = new RectF();
     }

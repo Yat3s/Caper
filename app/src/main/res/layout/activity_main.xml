@@ -42,19 +42,28 @@
                         android:layout_height="0dp"
                         android:background="@color/md_amber_100"/>
 
+                    <View
+                        android:layout_width="2dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorPrimary"/>
+
                     <com.yat3s.demo.caper.widget.AnimateLayout
                         android:id="@+id/performance_right_layout"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:background="@color/md_red_100"/>
+                        android:background="@color/md_lime_800"/>
                 </com.yat3s.demo.caper.widget.AnimateLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:background="@color/colorPrimary"/>
 
                 <com.yat3s.demo.caper.widget.AnimateLayout
                     android:id="@+id/performance_bottom_layout"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-
-                    android:background="@color/md_red_500"/>
+                    android:background="@color/md_cyan_700"/>
             </LinearLayout>
 
             <View

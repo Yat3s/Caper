@@ -103,6 +103,8 @@ public class MainActivity extends AppCompatActivity {
                 performanceBottomLayout.animateSize(App.sScreenWidth, App.sScreenHeight * 0.3f);
                 break;
             case R.id.performance_bottom_layout:
+                performanceLeftLayout.animateHeight(App.sScreenHeight * 0.3f);
+                performanceRightLayout.animateHeight(App.sScreenHeight * 0.3f);
                 performanceTopLayout.animateSize(App.sScreenWidth, App.sScreenHeight * 0.3f);
                 performanceBottomLayout.animateSize(App.sScreenWidth, App.sScreenHeight * 0.4f);
                 break;
@@ -130,6 +132,9 @@ public class MainActivity extends AppCompatActivity {
         performanceRightLayout.initSize(App.sScreenWidth * 0.5f, App.sScreenHeight * 0.3f);
         performanceTopLayout.initSize(App.sScreenWidth, App.sScreenHeight * 0.3f);
         performanceBottomLayout.initSize(App.sScreenWidth, App.sScreenHeight * 0.4f);
+        performanceLeftLayout.setIcon(R.mipmap.icon_github);
+        performanceRightLayout.setIcon(R.mipmap.icon_twitter);
+        performanceBottomLayout.setIcon(R.mipmap.icon_youtube);
     }
 
     private void configureViewpager() {

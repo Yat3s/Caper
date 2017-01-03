@@ -4,7 +4,9 @@ import android.animation.Animator;
 import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.animation.OvershootInterpolator;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.yat3s.demo.caper.App;
@@ -37,8 +39,19 @@ public class AnimateLayout extends LinearLayout {
         startAnimate(ObjectAnimator.ofFloat(this, PROPERTY_HEIGHT, height));
     }
 
+    public void animateHeight(float height) {
+        startAnimate(ObjectAnimator.ofFloat(this, PROPERTY_HEIGHT, height));
+    }
+
     public void animateSizePercent(float widthPercent, float heightPercent) {
         animateSize((int) (App.sScreenWidth * widthPercent), (int) (App.sScreenHeight * heightPercent));
+    }
+
+    public void setIcon(int iconResId) {
+        setGravity(Gravity.CENTER);
+        ImageView imageView = new ImageView(getContext());
+        imageView.setImageResource(iconResId);
+        addView(imageView);
     }
 
     private void startAnimate(Animator animator) {

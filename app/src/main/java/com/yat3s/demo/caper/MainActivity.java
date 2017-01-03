@@ -3,7 +3,6 @@ package com.yat3s.demo.caper;
 import android.animation.Animator;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -21,10 +20,11 @@ import android.widget.TextView;
 import com.yat3s.demo.caper.widget.AnimateLayout;
 import com.yat3s.demo.caper.widget.ContentTextView;
 import com.yat3s.demo.caper.widget.GuillotineInterpolator;
-import com.yat3s.demo.caper.widget.ViewWrapper;
 
+import butterknife.BindDimen;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
@@ -41,10 +41,18 @@ public class MainActivity extends AppCompatActivity {
     FrameLayout toolbar;
     @BindView(R.id.title_tv)
     ContentTextView titleTv;
-    @BindView(R.id.performance_layout)
-    AnimateLayout performanceLayout;
+    @BindView(R.id.performance_left_layout)
+    AnimateLayout performanceLeftLayout;
+    @BindView(R.id.performance_right_layout)
+    AnimateLayout performanceRightLayout;
     @BindView(R.id.performance_viewpager)
     ViewPager performanceViewpager;
+    @BindView(R.id.performance_top_layout)
+    AnimateLayout performanceTopLayout;
+    @BindView(R.id.performance_bottom_layout)
+    AnimateLayout performanceBottomLayout;
+    @BindDimen(R.dimen.performanceStageHeight)
+    float pers;
 
     private boolean menuIsOpen = false;
     private ObjectAnimator mOpenMenuAnimator, mCloseMenuAnimator;
@@ -57,15 +65,38 @@ public class MainActivity extends AppCompatActivity {
 
         configureProfile();
         configureViewpager();
+        configurePerformanceLayout();
+    }
 
-        performanceLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, TabAnimationActivity.class));
-                ObjectAnimator.ofInt(new ViewWrapper(performanceLayout), "width", 1000).setDuration(800).start();
-                ObjectAnimator.ofInt(new ViewWrapper(performanceLayout), "height", 800).setDuration(800).start();
-            }
-        });
+
+    @OnClick({R.id.performance_left_layout, R.id.performance_right_layout, R.id.performance_bottom_layout})
+    public void performance(View view) {
+        float topHighlightHeight = App.sScreenHeight * 0.4f;
+        switch (view.getId()) {
+            case R.id.performance_left_layout:
+                performanceLeftLayout.animateSize(App.sScreenWidth * 0.7f, topHighlightHeight);
+                performanceRightLayout.animateSize(App.sScreenWidth * 0.3f, topHighlightHeight);
+                performanceTopLayout.animateSize(App.sScreenWidth, topHighlightHeight);
+                performanceBottomLayout.animateSize(App.sScreenWidth, App.sScreenHeight * 0.3f);
+                break;
+            case R.id.performance_right_layout:
+                performanceLeftLayout.animateSize(App.sScreenWidth * 0.3f, topHighlightHeight);
+                performanceRightLayout.animateSize(App.sScreenWidth * 0.7f, topHighlightHeight);
+                performanceTopLayout.animateSize(App.sScreenWidth, topHighlightHeight);
+                performanceBottomLayout.animateSize(App.sScreenWidth, App.sScreenHeight * 0.3f);
+                break;
+            case R.id.performance_bottom_layout:
+                performanceTopLayout.animateSize(App.sScreenWidth, App.sScreenHeight * 0.3f);
+                performanceBottomLayout.animateSize(App.sScreenWidth, App.sScreenHeight * 0.4f);
+                break;
+        }
+    }
+
+    private void configurePerformanceLayout() {
+        performanceLeftLayout.initSize(App.sScreenWidth * 0.3f, App.sScreenHeight * 0.2f);
+        performanceRightLayout.initSize(App.sScreenWidth * 0.7f, App.sScreenHeight * 0.2f);
+        performanceTopLayout.initSize(App.sScreenWidth, App.sScreenHeight * 0.2f);
+        performanceBottomLayout.initSize(App.sScreenWidth, App.sScreenHeight * 0.3f);
     }
 
     private void configureViewpager() {
@@ -178,4 +209,5 @@ public class MainActivity extends AppCompatActivity {
 
         profileLayout.setRotation(MENU_CLOSED_ANGLE);
     }
+
 }

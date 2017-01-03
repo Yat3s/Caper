@@ -27,7 +27,7 @@ import butterknife.OnClick;
  * GitHub: https://github.com/yat3s
  */
 public class TabAnimationActivity extends AppCompatActivity {
-    private static final int MOCK_ITEM_COUNT = 100;
+    private static final int MOCK_ITEM_COUNT = 200;
     private static final int[] MOCK_ITEM_IMG_RES = {R.mipmap.img_1, R.mipmap.img_2, R.mipmap.img_3, R.mipmap.img_4, R.mipmap
             .img_5, R.mipmap.img_6, R.mipmap.img_7, R.mipmap.img_8};
     @BindView(R.id.content_rv)

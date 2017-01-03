@@ -1,5 +1,6 @@
 package com.yat3s.demo.caper;
 
+import android.animation.Animator;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String PROPERTY_ROTATION = "rotation";
     private static final float MENU_CLOSED_ANGLE = -90f;
     private static final float MENU_OPENED_ANGLE = 0f;
+    private static final int TOOLBAR_ELEVATION = 20;
     private static final long DEFAULT_DURATION = 500;
 
     @BindView(R.id.profile_layout)
@@ -145,6 +147,8 @@ public class MainActivity extends AppCompatActivity {
         performanceViewpager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+                // Animate background with evaluated value.
                 float processValue = (position + positionOffset) / (itemTitles.length - 1);
                 int value = (Integer) new ArgbEvaluator().evaluate(processValue, Color.WHITE, Color.GREEN);
                 performanceViewpager.setBackgroundColor(value);
@@ -187,13 +191,33 @@ public class MainActivity extends AppCompatActivity {
         mCloseMenuAnimator = ObjectAnimator.ofFloat(profileLayout, PROPERTY_ROTATION, MENU_OPENED_ANGLE, MENU_CLOSED_ANGLE)
                 .setDuration(DEFAULT_DURATION);
         mCloseMenuAnimator.setInterpolator(new GuillotineInterpolator());
+        mCloseMenuAnimator.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                toolbar.setElevation(TOOLBAR_ELEVATION);
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
         menuBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (menuIsOpen) {
                     mCloseMenuAnimator.start();
-                    titleTv.animate().alpha(1).start();
-                    toolbar.setElevation(20);
+                    titleTv.animate().alpha(1.0f).start();
                 } else {
                     mOpenMenuAnimator.start();
                     titleTv.animate().alpha(0).start();
@@ -203,6 +227,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        // Close.
         profileLayout.setRotation(MENU_CLOSED_ANGLE);
     }
 }

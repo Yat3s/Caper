@@ -258,7 +258,6 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     openSearch();
                 }
-                isSearch = !isSearch;
             }
         });
     }
@@ -287,19 +286,50 @@ public class MainActivity extends AppCompatActivity {
         searchLayout.setVisibility(View.VISIBLE);
         ObjectAnimator.ofFloat(inputLayout, "alpha", 0f, 1.0f).setDuration(1200).start();
         searchView.animate().translationX(-mSearchViewX).setDuration(600).start();
+        isSearch = !isSearch;
     }
 
     private void closeSearch() {
         searchView.resetAnim();
-        searchMask.setVisibility(View.GONE);
-        searchLayout.setVisibility(View.GONE);
-        searchView.animate().translationX(0).setDuration(300).start();
+        searchView.animate().translationX(0).setDuration(500).start();
+        searchMask.animate().alpha(0).setDuration(600).start();
+        inputLayout.animate().alpha(0).setDuration(200).start();
+        ObjectAnimator searchLayoutAnimator = ObjectAnimator.ofFloat(searchLayout, "alpha", 0.8f, 0.0f);
+        searchLayoutAnimator.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                searchMask.setVisibility(View.GONE);
+                searchLayout.setVisibility(View.GONE);
+                searchLayout.setAlpha(1.0f);
+                searchMask.setAlpha(1.0f);
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+        searchLayoutAnimator.setDuration(600).start();
+
+        isSearch = !isSearch;
     }
 
     @Override
     public void onBackPressed() {
         if (menuIsOpen) {
             closeMenu();
+        } else if (isSearch) {
+            closeSearch();
         } else {
             super.onBackPressed();
         }

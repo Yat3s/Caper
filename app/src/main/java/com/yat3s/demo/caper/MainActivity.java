@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.yat3s.demo.caper.widget.AnimateLayout;
@@ -30,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private static final String GITHUB = "https://github.com/yat3s";
     private static final String PROPERTY_ROTATION = "rotation";
+    private static final float MENU_ICON_ROTATE_ANGLE = 36f;
     private static final float MENU_CLOSED_ANGLE = -90f;
     private static final float MENU_OPENED_ANGLE = 0f;
     private static final int TOOLBAR_ELEVATION = 20;
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
     @BindView(R.id.profile_layout)
     LinearLayout profileLayout;
     @BindView(R.id.menu_btn)
-    ImageView menuBtn;
+    LinearLayout menuBtn;
     @BindView(R.id.toolbar)
     FrameLayout toolbar;
     @BindView(R.id.title_tv)
@@ -53,6 +53,10 @@ public class MainActivity extends AppCompatActivity {
     AnimateLayout performanceTopLayout;
     @BindView(R.id.performance_bottom_layout)
     AnimateLayout performanceBottomLayout;
+    @BindView(R.id.menu_line_one)
+    View menuLineOne;
+    @BindView(R.id.menu_line_two)
+    View menuLineTwo;
 
     private boolean menuIsOpen = false;
     private ObjectAnimator mOpenMenuAnimator, mCloseMenuAnimator;
@@ -180,6 +184,10 @@ public class MainActivity extends AppCompatActivity {
                 }
                 profileLayout.setPivotX(toolbar.getHeight() / 2);
                 profileLayout.setPivotY(toolbar.getHeight() / 2);
+                menuLineOne.setPivotX(0);
+                menuLineOne.setPivotY(menuLineOne.getHeight() / 2);
+                menuLineTwo.setPivotX(0);
+                menuLineTwo.setPivotY(menuLineTwo.getHeight() / 2);
             }
         });
 
@@ -218,10 +226,14 @@ public class MainActivity extends AppCompatActivity {
                 if (menuIsOpen) {
                     mCloseMenuAnimator.start();
                     titleTv.animate().alpha(1.0f).start();
+                    menuLineOne.animate().rotation(0).start();
+                    menuLineTwo.animate().rotation(0).start();
                 } else {
                     mOpenMenuAnimator.start();
                     titleTv.animate().alpha(0).start();
                     toolbar.setElevation(0);
+                    menuLineOne.animate().rotation(MENU_ICON_ROTATE_ANGLE).start();
+                    menuLineTwo.animate().rotation(-MENU_ICON_ROTATE_ANGLE).start();
                 }
                 menuIsOpen = !menuIsOpen;
             }

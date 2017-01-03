@@ -19,12 +19,28 @@
         android:textSize="@dimen/text_size_medium"
         android:textStyle="bold"/>
 
-    <ImageView
+    <LinearLayout
         android:id="@+id/menu_btn"
         style="@style/Widget.AppCompat.Toolbar.Button.Navigation"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:rotation="90"
-        android:src="@mipmap/ic_menu_90"/>
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="12dp">
 
+        <View
+            android:id="@+id/menu_line_one"
+            android:layout_width="24dp"
+            android:layout_height="2dp"
+            android:layout_gravity="center"
+            android:background="@color/md_white_1000"/>
+
+        <View
+            android:id="@+id/menu_line_two"
+            android:layout_width="24dp"
+            android:layout_height="2dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="12dp"
+            android:background="@color/md_white_1000"/>
+    </LinearLayout>
 </FrameLayout>

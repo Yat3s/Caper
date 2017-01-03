@@ -1,6 +1,5 @@
 package com.yat3s.demo.caper;
 
-import android.animation.Animator;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
@@ -188,36 +187,17 @@ public class MainActivity extends AppCompatActivity {
         mCloseMenuAnimator = ObjectAnimator.ofFloat(profileLayout, PROPERTY_ROTATION, MENU_OPENED_ANGLE, MENU_CLOSED_ANGLE)
                 .setDuration(DEFAULT_DURATION);
         mCloseMenuAnimator.setInterpolator(new GuillotineInterpolator());
-        mCloseMenuAnimator.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animation) {
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-
-            }
-        });
-
         menuBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (menuIsOpen) {
                     mCloseMenuAnimator.start();
                     titleTv.animate().alpha(1).start();
+                    toolbar.setElevation(20);
                 } else {
                     mOpenMenuAnimator.start();
                     titleTv.animate().alpha(0).start();
+                    toolbar.setElevation(0);
                 }
                 menuIsOpen = !menuIsOpen;
             }

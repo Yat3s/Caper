@@ -5,6 +5,7 @@
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
+    android:elevation="12dp"
     tools:showIn="@layout/activity_main">
 
     <com.yat3s.demo.caper.widget.ContentTextView

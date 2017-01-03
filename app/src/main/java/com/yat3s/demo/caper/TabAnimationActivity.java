@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import com.yat3s.library.adapter.AnimationType;
@@ -18,6 +19,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by Yat3s on 22/12/2016.
@@ -34,6 +36,7 @@ public class TabAnimationActivity extends AppCompatActivity {
     LinearLayout tabLayout;
 
     private boolean tabIsShow;
+    private CardAdapter mCardAdapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,9 +44,9 @@ public class TabAnimationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tab_animation);
         ButterKnife.bind(this);
 
-        final CardAdapter cardAdapter = new CardAdapter(this, generateMockData());
+        mCardAdapter = new CardAdapter(this, generateMockData());
         contentRv.setLayoutManager(new LinearLayoutManager(this));
-        contentRv.setAdapter(cardAdapter);
+        contentRv.setAdapter(mCardAdapter);
         contentRv.addItemDecoration(new DividerItemDecoration(this));
         contentRv.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -73,8 +76,26 @@ public class TabAnimationActivity extends AppCompatActivity {
                 }
             }
         });
-        cardAdapter.setItemAnimation(AnimationType.SCALE);
+        mCardAdapter.setItemAnimation(AnimationType.SCALE);
 
+    }
+
+    @OnClick({R.id.one_tab, R.id.two_tab, R.id.three_tab, R.id.four_tab})
+    public void tapTab(View view) {
+        switch (view.getId()) {
+            case R.id.one_tab:
+                mCardAdapter.setItemAnimation(AnimationType.SLIDE_FROM_BOTTOM);
+                break;
+            case R.id.two_tab:
+                mCardAdapter.setItemAnimation(AnimationType.SLIDE_FROM_LEFT);
+                break;
+            case R.id.three_tab:
+                mCardAdapter.setItemAnimation(AnimationType.ALPHA);
+                break;
+            case R.id.four_tab:
+                mCardAdapter.setItemAnimation(AnimationType.SLIDE_FROM_RIGHT);
+                break;
+        }
     }
 
     private List<CardItem> generateMockData() {

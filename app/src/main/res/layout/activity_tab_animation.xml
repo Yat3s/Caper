@@ -9,33 +9,38 @@
         android:id="@+id/content_rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="vertical"
+        android:background="@color/colorPrimary"
         android:clipToPadding="false"
-        android:fitsSystemWindows="true"/>
+        android:fitsSystemWindows="true"
+        android:scrollbars="vertical"/>
 
     <LinearLayout
         android:id="@+id/tab_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:alpha="0.9"
         android:background="@color/md_grey_200"
+        android:elevation="12dp"
         android:orientation="horizontal"
         android:padding="8dp">
 
         <ImageView
+            android:id="@+id/one_tab"
             style="@style/tabItem"
             android:src="@mipmap/icon_21"/>
 
         <ImageView
+            android:id="@+id/two_tab"
             style="@style/tabItem"
             android:src="@mipmap/icon_22"/>
 
         <ImageView
+            android:id="@+id/three_tab"
             style="@style/tabItem"
             android:src="@mipmap/icon_23"/>
 
         <ImageView
+            android:id="@+id/four_tab"
             style="@style/tabItem"
             android:src="@mipmap/icon_24"/>
     </LinearLayout>

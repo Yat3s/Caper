@@ -69,4 +69,8 @@ public class AnimateLayout extends LinearLayout {
         setCustomWidth(width);
         setCustomHeight(height);
     }
+
+    public void animateMagic() {
+        ObjectAnimator.ofInt(this, "translationZ", 100).start();
+    }
 }

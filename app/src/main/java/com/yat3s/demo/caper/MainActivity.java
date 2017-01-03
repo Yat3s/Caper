@@ -5,6 +5,7 @@ import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
@@ -27,6 +28,7 @@ import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
+    private static final String GITHUB = "https://github.com/yat3s";
     private static final String PROPERTY_ROTATION = "rotation";
     private static final float MENU_CLOSED_ANGLE = -90f;
     private static final float MENU_OPENED_ANGLE = 0f;
@@ -68,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
     @OnClick({R.id.performance_left_layout, R.id.performance_right_layout, R.id.performance_bottom_layout})
     public void performance(View view) {
-        float topHighlightHeight = App.sScreenHeight * 0.4f;
+        float topHighlightHeight = App.sScreenHeight * 0.5f;
         switch (view.getId()) {
             case R.id.performance_left_layout:
                 performanceLeftLayout.animateSize(App.sScreenWidth * 0.7f, topHighlightHeight);
@@ -83,8 +85,9 @@ public class MainActivity extends AppCompatActivity {
                 performanceBottomLayout.animateSize(App.sScreenWidth, App.sScreenHeight * 0.3f);
                 break;
             case R.id.performance_bottom_layout:
-                performanceTopLayout.animateSize(App.sScreenWidth, App.sScreenHeight * 0.2f);
+                performanceTopLayout.animateSize(App.sScreenWidth, App.sScreenHeight * 0.3f);
                 performanceBottomLayout.animateSize(App.sScreenWidth, App.sScreenHeight * 0.4f);
+                performanceBottomLayout.animateMagic();
                 break;
         }
     }
@@ -98,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.demo2_item:
                 break;
             case R.id.github_item:
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(GITHUB)));
                 break;
             case R.id.email_item:
                 break;
@@ -105,10 +109,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void configurePerformanceLayout() {
-        performanceLeftLayout.initSize(App.sScreenWidth * 0.2f, App.sScreenHeight * 0.2f);
-        performanceRightLayout.initSize(App.sScreenWidth * 0.8f, App.sScreenHeight * 0.2f);
-        performanceTopLayout.initSize(App.sScreenWidth, App.sScreenHeight * 0.2f);
-        performanceBottomLayout.initSize(App.sScreenWidth, App.sScreenHeight * 0.3f);
+        performanceLeftLayout.initSize(App.sScreenWidth * 0.5f, App.sScreenHeight * 0.3f);
+        performanceRightLayout.initSize(App.sScreenWidth * 0.5f, App.sScreenHeight * 0.3f);
+        performanceTopLayout.initSize(App.sScreenWidth, App.sScreenHeight * 0.3f);
+        performanceBottomLayout.initSize(App.sScreenWidth, App.sScreenHeight * 0.4f);
     }
 
     private void configureViewpager() {
@@ -221,6 +225,4 @@ public class MainActivity extends AppCompatActivity {
 
         profileLayout.setRotation(MENU_CLOSED_ANGLE);
     }
-
-
 }

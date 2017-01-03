@@ -53,25 +53,33 @@
                     android:id="@+id/performance_bottom_layout"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
+
                     android:background="@color/md_red_500"/>
             </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="8dp"
-                android:background="@color/md_black_1000"/>
+                android:background="@color/colorPrimary"/>
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/performance_viewpager"
                 android:layout_width="match_parent"
                 android:layout_height="600dp"/>
-
         </LinearLayout>
 
     </ScrollView>
 
     <include layout="@layout/layout_profile"/>
 
+    <View
+        android:id="@+id/search_mask"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#88000000"
+        android:visibility="gone"/>
+
     <include layout="@layout/layout_toolbar"/>
+
 
 </FrameLayout>

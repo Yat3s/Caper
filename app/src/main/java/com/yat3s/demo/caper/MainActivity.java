@@ -20,6 +20,8 @@ import android.widget.LinearLayout;
 import com.yat3s.demo.caper.widget.AnimateLayout;
 import com.yat3s.demo.caper.widget.ContentTextView;
 import com.yat3s.demo.caper.widget.GuillotineInterpolator;
+import com.yat3s.demo.caper.widget.JJChangeArrowController;
+import com.yat3s.demo.caper.widget.JJSearchView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -57,9 +59,18 @@ public class MainActivity extends AppCompatActivity {
     View menuLineOne;
     @BindView(R.id.menu_line_two)
     View menuLineTwo;
+    @BindView(R.id.search_view)
+    JJSearchView searchView;
+    @BindView(R.id.search_mask)
+    View searchMask;
+    @BindView(R.id.search_layout)
+    LinearLayout searchLayout;
+    @BindView(R.id.input_layout)
+    LinearLayout inputLayout;
 
-    private boolean menuIsOpen = false;
+    private boolean menuIsOpen = false, isSearch = false;
     private ObjectAnimator mOpenMenuAnimator, mCloseMenuAnimator;
+    private float mSearchViewX;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        configureToolbar();
         configureProfile();
         configureViewpager();
         configurePerformanceLayout();
@@ -92,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
             case R.id.performance_bottom_layout:
                 performanceTopLayout.animateSize(App.sScreenWidth, App.sScreenHeight * 0.3f);
                 performanceBottomLayout.animateSize(App.sScreenWidth, App.sScreenHeight * 0.4f);
-                performanceBottomLayout.animateMagic();
                 break;
         }
     }
@@ -188,6 +199,7 @@ public class MainActivity extends AppCompatActivity {
                 menuLineOne.setPivotY(menuLineOne.getHeight() / 2);
                 menuLineTwo.setPivotX(0);
                 menuLineTwo.setPivotY(menuLineTwo.getHeight() / 2);
+                mSearchViewX = searchView.getX();
             }
         });
 
@@ -224,22 +236,72 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (menuIsOpen) {
-                    mCloseMenuAnimator.start();
-                    titleTv.animate().alpha(1.0f).start();
-                    menuLineOne.animate().rotation(0).start();
-                    menuLineTwo.animate().rotation(0).start();
+                    closeMenu();
                 } else {
-                    mOpenMenuAnimator.start();
-                    titleTv.animate().alpha(0).start();
-                    toolbar.setElevation(0);
-                    menuLineOne.animate().rotation(MENU_ICON_ROTATE_ANGLE).start();
-                    menuLineTwo.animate().rotation(-MENU_ICON_ROTATE_ANGLE).start();
+                    openMenu();
                 }
-                menuIsOpen = !menuIsOpen;
             }
         });
 
         // Close.
         profileLayout.setRotation(MENU_CLOSED_ANGLE);
+    }
+
+
+    private void configureToolbar() {
+        searchView.setController(new JJChangeArrowController());
+        searchView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isSearch) {
+                    closeSearch();
+                } else {
+                    openSearch();
+                }
+                isSearch = !isSearch;
+            }
+        });
+    }
+
+
+    private void closeMenu() {
+        mCloseMenuAnimator.start();
+        titleTv.animate().alpha(1.0f).start();
+        menuLineOne.animate().rotation(0).start();
+        menuLineTwo.animate().rotation(0).start();
+        menuIsOpen = !menuIsOpen;
+    }
+
+    private void openMenu() {
+        mOpenMenuAnimator.start();
+        titleTv.animate().alpha(0).start();
+        toolbar.setElevation(0);
+        menuLineOne.animate().rotation(MENU_ICON_ROTATE_ANGLE).start();
+        menuLineTwo.animate().rotation(-MENU_ICON_ROTATE_ANGLE).start();
+        menuIsOpen = !menuIsOpen;
+    }
+
+    private void openSearch() {
+        searchView.startAnim();
+        searchMask.setVisibility(View.VISIBLE);
+        searchLayout.setVisibility(View.VISIBLE);
+        ObjectAnimator.ofFloat(inputLayout, "alpha", 0f, 1.0f).setDuration(1200).start();
+        searchView.animate().translationX(-mSearchViewX).setDuration(600).start();
+    }
+
+    private void closeSearch() {
+        searchView.resetAnim();
+        searchMask.setVisibility(View.GONE);
+        searchLayout.setVisibility(View.GONE);
+        searchView.animate().translationX(0).setDuration(300).start();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (menuIsOpen) {
+            closeMenu();
+        } else {
+            super.onBackPressed();
+        }
     }
 }

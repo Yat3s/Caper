@@ -43,4 +43,46 @@
             android:layout_marginTop="12dp"
             android:background="@color/md_white_1000"/>
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/search_layout"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="56dp"
+        android:paddingRight="12dp"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/input_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="Search some thing"
+                android:textColor="@color/md_grey_200"
+                android:textColorHint="@color/md_grey_500"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="4dp"
+                android:background="@color/md_grey_500"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <com.yat3s.demo.caper.widget.JJSearchView
+        android:id="@+id/search_view"
+        style="@style/Widget.AppCompat.Toolbar.Button.Navigation"
+        android:layout_width="60dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"/>
+
+
 </FrameLayout>

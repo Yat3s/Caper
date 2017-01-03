@@ -17,18 +17,22 @@
         android:layout_height="@dimen/profileAvatarSize"/>
 
     <com.yat3s.demo.caper.widget.ContentTextView
+        android:id="@+id/demo1_item"
+        style="@style/ProfileItemText"
+        android:text="DEMO1"/>
+
+    <com.yat3s.demo.caper.widget.ContentTextView
+        android:id="@+id/demo2_item"
+        style="@style/ProfileItemText"
+        android:text="DEMO2"/>
+
+    <com.yat3s.demo.caper.widget.ContentTextView
+        android:id="@+id/github_item"
         style="@style/ProfileItemText"
         android:text="GITHUB"/>
 
     <com.yat3s.demo.caper.widget.ContentTextView
-        style="@style/ProfileItemText"
-        android:text="EMAIL"/>
-
-    <com.yat3s.demo.caper.widget.ContentTextView
-        style="@style/ProfileItemText"
-        android:text="GITHUB"/>
-
-    <com.yat3s.demo.caper.widget.ContentTextView
+        android:id="@+id/email_item"
         style="@style/ProfileItemText"
         android:text="EMAIL"/>
 

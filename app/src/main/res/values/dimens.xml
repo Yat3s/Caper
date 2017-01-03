@@ -7,4 +7,5 @@
     <dimen name="text_size_large">22sp</dimen>
     <dimen name="profileAvatarSize">160dp</dimen>
     <dimen name="performanceStageHeight">500dp</dimen>
+    <dimen name="itemImageHeight">280dp</dimen>
 </resources>

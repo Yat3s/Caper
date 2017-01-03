@@ -3,6 +3,7 @@ package com.yat3s.demo.caper;
 import android.animation.Animator;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -84,6 +85,21 @@ public class MainActivity extends AppCompatActivity {
             case R.id.performance_bottom_layout:
                 performanceTopLayout.animateSize(App.sScreenWidth, App.sScreenHeight * 0.2f);
                 performanceBottomLayout.animateSize(App.sScreenWidth, App.sScreenHeight * 0.4f);
+                break;
+        }
+    }
+
+    @OnClick({R.id.demo1_item, R.id.demo2_item, R.id.github_item, R.id.email_item})
+    public void profileItem(View view) {
+        switch (view.getId()) {
+            case R.id.demo1_item:
+                startActivity(new Intent(this, TabAnimationActivity.class));
+                break;
+            case R.id.demo2_item:
+                break;
+            case R.id.github_item:
+                break;
+            case R.id.email_item:
                 break;
         }
     }
@@ -205,5 +221,6 @@ public class MainActivity extends AppCompatActivity {
 
         profileLayout.setRotation(MENU_CLOSED_ANGLE);
     }
+
 
 }

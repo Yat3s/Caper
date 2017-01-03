@@ -8,8 +8,10 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.LinearLayout;
 
+import com.yat3s.library.adapter.AnimationType;
 import com.yat3s.library.adapter.BaseAdapter;
 import com.yat3s.library.adapter.BaseViewHolder;
+import com.yat3s.library.adapter.DividerItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +26,8 @@ import butterknife.ButterKnife;
  */
 public class TabAnimationActivity extends AppCompatActivity {
     private static final int MOCK_ITEM_COUNT = 100;
+    private static final int[] MOCK_ITEM_IMG_RES = {R.mipmap.img_1, R.mipmap.img_2, R.mipmap.img_3, R.mipmap.img_4, R.mipmap
+            .img_5, R.mipmap.img_6, R.mipmap.img_7, R.mipmap.img_8};
     @BindView(R.id.content_rv)
     RecyclerView contentRv;
     @BindView(R.id.tab_layout)
@@ -37,8 +41,10 @@ public class TabAnimationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tab_animation);
         ButterKnife.bind(this);
 
+        final CardAdapter cardAdapter = new CardAdapter(this, generateMockData());
         contentRv.setLayoutManager(new LinearLayoutManager(this));
-        contentRv.setAdapter(new CardAdapter(this, generateMockData()));
+        contentRv.setAdapter(cardAdapter);
+        contentRv.addItemDecoration(new DividerItemDecoration(this));
         contentRv.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
@@ -67,21 +73,23 @@ public class TabAnimationActivity extends AppCompatActivity {
                 }
             }
         });
+        cardAdapter.setItemAnimation(AnimationType.SCALE);
+
     }
 
     private List<CardItem> generateMockData() {
         List<CardItem> cardItems = new ArrayList<>();
         for (int idx = 0; idx < MOCK_ITEM_COUNT; idx++) {
-            cardItems.add(new CardItem("title " + idx));
+            cardItems.add(new CardItem(MOCK_ITEM_IMG_RES[idx % MOCK_ITEM_IMG_RES.length]));
         }
         return cardItems;
     }
 
     public static class CardItem {
-        public String title;
+        public int imgResId;
 
-        public CardItem(String title) {
-            this.title = title;
+        public CardItem(int imgResId) {
+            this.imgResId = imgResId;
         }
     }
 
@@ -93,7 +101,7 @@ public class TabAnimationActivity extends AppCompatActivity {
 
         @Override
         protected void bindDataToItemView(BaseViewHolder holder, CardItem item, int position) {
-            holder.setText(R.id.title_tv, item.title);
+            holder.setImageResource(R.id.image_iv, item.imgResId);
         }
 
         @Override

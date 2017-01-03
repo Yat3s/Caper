@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private static final String GITHUB = "https://github.com/yat3s";
     private static final String PROPERTY_ROTATION = "rotation";
+    private static final String PROPERTY_ALPHA = "alpha";
     private static final float MENU_ICON_ROTATE_ANGLE = 36f;
     private static final float MENU_CLOSED_ANGLE = -90f;
     private static final float MENU_OPENED_ANGLE = 0f;
@@ -284,7 +285,7 @@ public class MainActivity extends AppCompatActivity {
         searchView.startAnim();
         searchMask.setVisibility(View.VISIBLE);
         searchLayout.setVisibility(View.VISIBLE);
-        ObjectAnimator.ofFloat(inputLayout, "alpha", 0f, 1.0f).setDuration(1200).start();
+        ObjectAnimator.ofFloat(inputLayout, PROPERTY_ALPHA, 0f, 1.0f).setDuration(1200).start();
         searchView.animate().translationX(-mSearchViewX).setDuration(600).start();
         isSearch = !isSearch;
     }
@@ -294,7 +295,7 @@ public class MainActivity extends AppCompatActivity {
         searchView.animate().translationX(0).setDuration(500).start();
         searchMask.animate().alpha(0).setDuration(600).start();
         inputLayout.animate().alpha(0).setDuration(200).start();
-        ObjectAnimator searchLayoutAnimator = ObjectAnimator.ofFloat(searchLayout, "alpha", 0.8f, 0.0f);
+        ObjectAnimator searchLayoutAnimator = ObjectAnimator.ofFloat(searchLayout, PROPERTY_ALPHA, 0.8f, 0.0f);
         searchLayoutAnimator.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {

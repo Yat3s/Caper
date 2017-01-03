@@ -77,7 +77,6 @@ public class TabAnimationActivity extends AppCompatActivity {
             }
         });
         mCardAdapter.setItemAnimation(AnimationType.SCALE);
-
     }
 
     @OnClick({R.id.one_tab, R.id.two_tab, R.id.three_tab, R.id.four_tab})

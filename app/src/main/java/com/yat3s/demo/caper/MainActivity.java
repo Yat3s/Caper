@@ -15,13 +15,11 @@ import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.yat3s.demo.caper.widget.AnimateLayout;
 import com.yat3s.demo.caper.widget.ContentTextView;
 import com.yat3s.demo.caper.widget.GuillotineInterpolator;
 
-import butterknife.BindDimen;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -51,8 +49,6 @@ public class MainActivity extends AppCompatActivity {
     AnimateLayout performanceTopLayout;
     @BindView(R.id.performance_bottom_layout)
     AnimateLayout performanceBottomLayout;
-    @BindDimen(R.dimen.performanceStageHeight)
-    float pers;
 
     private boolean menuIsOpen = false;
     private ObjectAnimator mOpenMenuAnimator, mCloseMenuAnimator;
@@ -86,21 +82,21 @@ public class MainActivity extends AppCompatActivity {
                 performanceBottomLayout.animateSize(App.sScreenWidth, App.sScreenHeight * 0.3f);
                 break;
             case R.id.performance_bottom_layout:
-                performanceTopLayout.animateSize(App.sScreenWidth, App.sScreenHeight * 0.3f);
+                performanceTopLayout.animateSize(App.sScreenWidth, App.sScreenHeight * 0.2f);
                 performanceBottomLayout.animateSize(App.sScreenWidth, App.sScreenHeight * 0.4f);
                 break;
         }
     }
 
     private void configurePerformanceLayout() {
-        performanceLeftLayout.initSize(App.sScreenWidth * 0.3f, App.sScreenHeight * 0.2f);
-        performanceRightLayout.initSize(App.sScreenWidth * 0.7f, App.sScreenHeight * 0.2f);
+        performanceLeftLayout.initSize(App.sScreenWidth * 0.2f, App.sScreenHeight * 0.2f);
+        performanceRightLayout.initSize(App.sScreenWidth * 0.8f, App.sScreenHeight * 0.2f);
         performanceTopLayout.initSize(App.sScreenWidth, App.sScreenHeight * 0.2f);
         performanceBottomLayout.initSize(App.sScreenWidth, App.sScreenHeight * 0.3f);
     }
 
     private void configureViewpager() {
-        final String[] itemTitles = new String[]{"Pager1", "Pager2", "Pager3"};
+        final String[] itemTitles = new String[]{"KEEP CALM\nAND \nSLEEP NOW", "CODING \nOR\nDIE", "EVERYTHING\nWILL BE\nOK"};
 
         performanceViewpager.setAdapter(new PagerAdapter() {
             @Override
@@ -115,10 +111,10 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public Object instantiateItem(ViewGroup container, int position) {
-                TextView textView = new TextView(MainActivity.this);
-                textView.setText(itemTitles[position]);
-                container.addView(textView, 0);
-                return textView;
+                ContentTextView view = (ContentTextView) getLayoutInflater().inflate(R.layout.item_text, container, false);
+                view.setText(itemTitles[position]);
+                container.addView(view);
+                return view;
             }
 
             @Override
@@ -131,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 float processValue = (position + positionOffset) / (itemTitles.length - 1);
-                int value = (Integer) new ArgbEvaluator().evaluate(processValue, Color.DKGRAY, Color.GREEN);
+                int value = (Integer) new ArgbEvaluator().evaluate(processValue, Color.WHITE, Color.GREEN);
                 performanceViewpager.setBackgroundColor(value);
             }
 

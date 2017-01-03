@@ -22,18 +22,18 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <com.yat3s.demo.caper.widget.AnimateLayout
                     android:id="@+id/performance_top_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
                     android:orientation="horizontal">
 
                     <com.yat3s.demo.caper.widget.AnimateLayout
@@ -56,10 +56,15 @@
                     android:background="@color/md_red_500"/>
             </LinearLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="8dp"
+                android:background="@color/md_black_1000"/>
+
             <android.support.v4.view.ViewPager
                 android:id="@+id/performance_viewpager"
                 android:layout_width="match_parent"
-                android:layout_height="160dp"/>
+                android:layout_height="660dp"/>
 
         </LinearLayout>
 

@@ -5,7 +5,11 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 
-
+/**
+ * Created by Yat3s on 12/15/16.
+ * Email: hawkoyates@gmail.com
+ * GitHub: https://github.com/yat3s
+ */
 public class ChangeArrowAnimController extends BaseAnimController {
     private float cx, cy, cr, scr, scx, scy;
     private RectF mRectF, mOutRectF;

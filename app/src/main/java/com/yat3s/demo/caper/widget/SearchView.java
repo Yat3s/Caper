@@ -7,6 +7,11 @@ import android.graphics.Path;
 import android.util.AttributeSet;
 import android.view.View;
 
+/**
+ * Created by Yat3s on 12/15/16.
+ * Email: hawkoyates@gmail.com
+ * GitHub: https://github.com/yat3s
+ */
 public class SearchView extends View {
     private Paint mPaint;
     private Path mPath;

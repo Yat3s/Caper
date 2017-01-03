@@ -2,8 +2,11 @@ package com.yat3s.demo.caper.widget;
 
 import android.animation.TimeInterpolator;
 
+
 /**
- * Created by Dmytro Denysenko on 5/7/15.
+ * Created by Yat3s on 12/15/16.
+ * Email: hawkoyates@gmail.com
+ * GitHub: https://github.com/yat3s
  */
 public class GuillotineInterpolator implements TimeInterpolator {
 

@@ -14,6 +14,11 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.ref.WeakReference;
 
+/**
+ * Created by Yat3s on 12/15/16.
+ * Email: hawkoyates@gmail.com
+ * GitHub: https://github.com/yat3s
+ */
 public abstract class BaseAnimController {
     public static final int STATE_ANIM_NONE = 0;
     public static final int STATE_ANIM_START = 1;

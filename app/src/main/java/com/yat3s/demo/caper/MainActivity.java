@@ -1,6 +1,7 @@
 package com.yat3s.demo.caper;
 
 import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.content.Intent;
@@ -18,9 +19,9 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.yat3s.demo.caper.widget.AnimateLayout;
+import com.yat3s.demo.caper.widget.ChangeArrowAnimController;
 import com.yat3s.demo.caper.widget.ContentTextView;
 import com.yat3s.demo.caper.widget.GuillotineInterpolator;
-import com.yat3s.demo.caper.widget.ChangeArrowAnimController;
 import com.yat3s.demo.caper.widget.SearchView;
 
 import butterknife.BindView;
@@ -134,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
         performanceBottomLayout.initSize(App.sScreenWidth, App.sScreenHeight * 0.4f);
         performanceLeftLayout.setIcon(R.mipmap.icon_github);
         performanceRightLayout.setIcon(R.mipmap.icon_twitter);
-        performanceBottomLayout.setIcon(R.mipmap.icon_youtube);
+        performanceBottomLayout.setIcon(R.mipmap.icon_tumblr);
     }
 
     private void configureViewpager() {
@@ -217,25 +218,12 @@ public class MainActivity extends AppCompatActivity {
         mCloseMenuAnimator = ObjectAnimator.ofFloat(profileLayout, PROPERTY_ROTATION, MENU_OPENED_ANGLE, MENU_CLOSED_ANGLE)
                 .setDuration(DEFAULT_DURATION);
         mCloseMenuAnimator.setInterpolator(new GuillotineInterpolator());
-        mCloseMenuAnimator.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animation) {
 
-            }
-
+        mCloseMenuAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
                 toolbar.setElevation(TOOLBAR_ELEVATION);
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-
             }
         });
         menuBtn.setOnClickListener(new View.OnClickListener() {
@@ -301,28 +289,14 @@ public class MainActivity extends AppCompatActivity {
         searchMask.animate().alpha(0).setDuration(600).start();
         inputLayout.animate().alpha(0).setDuration(200).start();
         ObjectAnimator searchLayoutAnimator = ObjectAnimator.ofFloat(searchLayout, PROPERTY_ALPHA, 0.8f, 0.0f);
-        searchLayoutAnimator.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animation) {
-
-            }
-
+        searchLayoutAnimator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
+                super.onAnimationEnd(animation);
                 searchMask.setVisibility(View.GONE);
                 searchLayout.setVisibility(View.GONE);
                 searchLayout.setAlpha(1.0f);
                 searchMask.setAlpha(1.0f);
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animation) {
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {
-
             }
         });
         searchLayoutAnimator.setDuration(600).start();

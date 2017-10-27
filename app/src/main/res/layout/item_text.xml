@@ -5,4 +5,5 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
+    android:text="TEXT"
     android:textSize="34sp"/>

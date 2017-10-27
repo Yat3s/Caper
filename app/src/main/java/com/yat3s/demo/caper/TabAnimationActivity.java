@@ -3,6 +3,7 @@ package com.yat3s.demo.caper;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -43,6 +44,22 @@ public class TabAnimationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tab_animation);
         ButterKnife.bind(this);
+
+
+        // Find fragment.
+//        HorizontalCollectionFragment horizontalCollectionFragment = (HorizontalCollectionFragment)
+// getSupportFragmentManager().findFragmentById(R.id
+//                .my_fragment);
+//
+//        horizontalCollectionFragment.setTitle("123123");
+//
+        // New instance
+        HorizontalCollectionFragment horizontalCollectionFragment = HorizontalCollectionFragment.newInstance();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.fragment_container_layout, horizontalCollectionFragment);
+        transaction.commit();
+
+        // OKay!
 
         mCardAdapter = new CardAdapter(this, generateMockData());
         contentRv.setLayoutManager(new LinearLayoutManager(this));
@@ -103,6 +120,7 @@ public class TabAnimationActivity extends AppCompatActivity {
             cardItems.add(new CardItem(MOCK_ITEM_IMG_RES[idx % MOCK_ITEM_IMG_RES.length]));
         }
         return cardItems;
+
     }
 
     public static class CardItem {

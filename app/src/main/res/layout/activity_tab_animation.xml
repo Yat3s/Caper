@@ -45,4 +45,9 @@
             android:src="@mipmap/icon_24"/>
     </LinearLayout>
 
+    <FrameLayout
+        android:id="@+id/fragment_container_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 </FrameLayout>
